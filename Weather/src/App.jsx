@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import find from './assets/Search.jpg';
-import sun from './assets/SunIcon.png';
+import sun from './assets/SunIcon.png'; 
 import snow from './assets/SnowIcon.png';
-const WeatherDetails = ({icon , temp , city , country , lat , log}) =>{
+import humidityicon from './assets/HumidityIcon.jpg';
+import windicon from './assets/WindIcon.png';
+const WeatherDetails = ({icon , temp , city , country , lat , log , humidity , wind}) =>{
  return(
    <>
   <div className="Images">
@@ -16,12 +18,24 @@ const WeatherDetails = ({icon , temp , city , country , lat , log}) =>{
   <div className='flex justify-between w-full mt-4'>
   <div >
     <span className="Lat">Latitude</span><br></br>
-    <span className='flex flex justify-center'>{lat}</span>
+    <span className=' flex justify-center'>{lat}</span>
     </div>
      <div >
     <span className="Log">Longitude</span><br></br>
-    <span className='flex flex justify-center'>{log}</span>  
+    <span className=' flex justify-center'>{log}</span>  
     </div>
+    </div>
+    <div className='flex justify-between w-full mt-4'>
+    <div>
+      <img src={humidityicon} alt="Humidity" className="w-15 h-15"/><br></br>
+      <span className='font-bold'>{humidity}%</span><br></br>
+      <span className='font-semibold'> Humidity</span>
+ </div>
+  <div>
+      <img src={windicon} alt="Wind" className="w-20 h-20"/>
+      <span className='font-bold'>{wind} km/h</span><br></br>
+      <span className='font-semibold'>Wind Speed</span>
+ </div>
  </div>
   </>
  )
@@ -33,6 +47,8 @@ function App() {
   const [country , setCountry] = useState("India");
   const [lat , setLat] = useState(0);
   const [log , setLog] = useState(0);
+  const [humidity , setHumidity] = useState(0);
+  const [wind , setWind] = useState(0);
   return (
     <div className="bg-gray-400 w-full min-h-screen flex justify-center items-center">
   <div className="bg-white w-80 rounded-2xl p-6 shadow-lg flex flex-col items-center">
@@ -49,7 +65,7 @@ function App() {
   />
 </form><br></br>
 
-      <WeatherDetails  icon={icon} temp={temp} city ={city} country ={country} lat={lat} log={log}/>
+      <WeatherDetails  icon={icon} temp={temp} city ={city} country ={country} lat={lat} log={log} humidity={humidity} wind={wind}/>
       </div>
     </div>
   )
